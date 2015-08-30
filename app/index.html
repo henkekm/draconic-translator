@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>English to Draconic translator</title>
+	<meta name="description" content="Translate English to Draconic using Yandex and magic">
+	<meta name="author" content="HenkeTime">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+  	================================================== -->
+  	<link href='http://fonts.googleapis.com/css?family=Yellowtail|PT+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="stylesheets/main.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Javascript
+	================================================== -->
+	<script type="text/javascript"
+			src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+	<script type="text/javascript"
+			src="scripts/controllers/main.js"></script>
+</head>
+<html ng-app="draconic-translator">
+<body>
+	<div ng-controller="MainController">
+		<h1>Draconic Translator</h1>
+		<hr/>
+		<div id="top-card" class="card">
+			<h3 class="title">API Key</h3>
+			<form name="keyForm">
+				<label>Key:
+					<input type="text" name="inputKey" ng-model="keyText" required>
+				</label>
+				<div role="alert">
+			    	<span class="error" ng-show="keyForm.inputKey.$error.required">The API Key is Required!</span>
+			    </div>
+			</form>
+		</div>
+		<div id="left-card" class="card">
+			<h3 class="title">Translate to Draconic</h3>
+			<div class="content">
+				<form name="myForm">
+					<label>English words go here:
+						<input type="text" name="inputText" ng-model="translateText"
+				    		   ng-pattern="noNumbers.regExRestrictions" required>
+					</label>
+				  	<div role="alert">
+				    	<span class="error" ng-show="myForm.inputText.$error.required">You have to have some text you want to translate...</span>
+				    	<span class="error" ng-show="myForm.inputText.$error.pattern">Please don't include numbers.</span>
+					</div>
+
+			    	<button class="action" type="button" name="translate" ng-click="logScope();translateToDraconic()">Translate to Draconic</button>
+
+			    </form>
+			    <h1 ng-model="draconifiedText" class="result">{{ draconifiedText }}</h1>
+		    </div>
+		</div>
+		<div id="right-card" class="card">
+			<h2 class="title">inglosh terjome</h2>
+			<div class="content">
+			    <form name="myFormD">
+					<label>Yang'on Keltekisek sa'zler barob, bu yirde:
+						<input type="text" name="inputTextD" ng-model="translateTextD"
+				    		   ng-pattern="noNumbers.regExRestrictionsD" required>
+					</label>
+				  	<div role="alert">
+				    	<span class="error" ng-show="myFormD.inputTextD.$error.required">Soz ba'losho kirek, eyrom metn, soz terjome qolosh osteymen...</span>
+				    	<span class="error" ng-show="myFormD.inputTextD.$error.pattern">ejder hich qendey faydelenosh uchun reqemler, shunong uchun, oltomas, ulerno terk choqedo.</span>
+					</div>
+
+			    	<button class="action" type="button" name="translateD" ng-click="logScope();translateToEnglish()">inglosh terjome</button>
+
+				</form>
+			    <h1 ng-model="englifiedText" class="result">{{ englifiedText }}</h1>
+			</div>
+		</div>
+	    <footer><h1><a href="http://translate.yandex.com">Powered by Yandex.Translate</a></h1></footer>
+	    <!-- ////// App scripts ////// -->
+	    <script src="scripts/app.js"></script>
+		<script src="scripts/controllers/main.js"></script>
+	</div>   
+</body>
+</html>
